@@ -12,6 +12,7 @@
     {
     public static void main(String[] args)
         {
-        // your code here
+        Deck gameCards = new Deck();
+        gameCards.playGame();
         }
     }
