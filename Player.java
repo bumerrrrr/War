@@ -14,7 +14,7 @@
 
 /**
 */
-    public templateJava(constuctors)
+    public templateJava()
         {
          //instancevariable = constructor;
         }
