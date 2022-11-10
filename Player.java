@@ -14,8 +14,13 @@
 
 /**
 */
-    public templateJava()
+    public Player()
         {
-         //instancevariable = constructor;
+         cards = new ArrayList<Card>();
         }
+    
+    public ArrayList<cards> getArrayList()
+       {
+        return cards;
+       }
     }
