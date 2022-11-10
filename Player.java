@@ -6,7 +6,7 @@
  * @version 9-1-22
  */
 
-//import java.util;
+import java.util.ArrayList;
 
  public class Player
     {
@@ -19,7 +19,7 @@
          cards = new ArrayList<Card>();
         }
     
-    public ArrayList<cards> getArrayList()
+    public ArrayList<Card> getArrayList()
        {
         return cards;
        }
