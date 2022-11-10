@@ -4,16 +4,10 @@ import java.util.ArrayList;
     private Card[] deck
     private int topCard;
     
-    deck()
-    {
-    topCard = 0;
-    for (int i = 0; i < deck.length; i++)
-            deck[i] = new Card(i);
     }
     
     public void shuffle() 
     {
-     topCard = 0;
 
      for (int i = 0; i < 10000; i++) 
          {
@@ -23,6 +17,7 @@ import java.util.ArrayList;
          deck[p1] = deck[p2];
          deck[p2] = tmpCard;
          }
-    
-    
     }
+    
+
+    
