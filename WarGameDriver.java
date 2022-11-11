@@ -8,7 +8,7 @@
 
 //import java.util;
 
- public class templateJava
+ public class WarGameDriver
     {
     public static void main(String[] args)
         {
