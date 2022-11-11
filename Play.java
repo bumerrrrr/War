@@ -24,6 +24,10 @@ import java.util.ArrayList;
     public String playGame(Deck game, ArrayList<Card> player1, ArrayList<Card> player2)
         {
         int startGame = 0;
+        Card p1Card = new Card(0, " ");
+        Card p2Card = new Card(0, " ");
+        int p1Num = 0;
+        int p2Num = 0;
         while(startGame < 1)
           {
           int smallestHand = player1.size();
@@ -32,10 +36,10 @@ import java.util.ArrayList;
           int timesRun = 0;
           while(timesRun < smallestHand)
             {
-            Card p1Card = player1.remove(0);
-            Card p2Card = player2.remove(0);
-            int p1Num = p1card.getValue();
-            int p2Num = p2Card.getValue();
+            p1Card = player1.remove(0);
+            p2Card = player2.remove(0);
+            p1Num = p1card.getValue();
+            p2Num = p2Card.getValue();
             timesRun = this.EvalRoundW(timesRun, p1Num, p2Num);
             }
           }
@@ -63,17 +67,22 @@ import java.util.ArrayList;
           overTime1.add(p1Num);
           overTime2.add(p2Num);
           int x = 0;
+          Card showCard1 = new Card(0, " ");
+          Card showCard2 = new Card(0, " ");
+          int showNum1 = 0;
+          int showNum2 = 0;
+          int winner = 0;
           while(x < 1)
             {
             overTime1.add(player1.remove(0));
-            Card showCard1 = player1.remove(0));
-            int showNum1 = showCard1.getValue();
+            showCard1 = player1.remove(0));
+            showNum1 = showCard1.getValue();
             timesRun++;
             overTime2.add(player2.remove(0));
-            Card showCard2 = player2.remove(0));
-            int showNum2 = showCard2.getValue();
+            showCard2 = player2.remove(0));
+            showNum2 = showCard2.getValue();
             timesRun++;
-            int winner = this.EvalOTW(showNum1, showNum2);
+            winner = this.EvalOTW(showNum1, showNum2);
             if(winner != 3)
               {
               this.fillOTWin(winner, overTime1, overTime2)
@@ -81,7 +90,6 @@ import java.util.ArrayList;
               }
             }
           }
-       return timesRun;
       }
 
     public static  EvalOTW(int showNum1, int showNum2)
