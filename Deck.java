@@ -1,8 +1,13 @@
 import java.util.ArrayList;
  public class Deck
     {
-    private ArrayList<Card> deck;
-  
+    private ArrayList<Card> cardDeck;
+
+    public Deck()
+      {
+      cardDeck = new ArrayList<Card>();
+      }
+
     public void shuffleAndFill()
      {
      String tempSuit = "";
@@ -26,38 +31,37 @@ import java.util.ArrayList;
       }
     for (int x = 2; x <= 14; x++)
       {
-      Deck.add(new Card(i, tempSuit));
+      cardDeck.add(new Card(i, tempSuit));
       }
     }
     int val = 0;
     for (int i = 0; i < 10000; i++)
       {
       val = (int)(51 * Math.random());
-      Deck.add(Deck.remove(val));
+      cardDeck.add(cardDeck.remove(val));
       }
   }
-   
-  
+
+
     public void dealCards(ArrayList<Card>player1, ArrayList<Card>player2)
     {
-    for (int i = 0; i < deck.size; i++)
+    for (int i = 0; i < cardDeck.size(); i++)
         {
         if(i%2 == 0)
            {
-           player1.add(deck[i]);
+           player1.add(cardDeck.get(i));
            }
         else
           {
-           player2.add(deck[i]);
-         
+           player2.add(cardDeck.get(i));
+
         }
-        
-        
+
+
         }
     }
-  
-  
-  
-  
+
+
+
+
     }
-    
