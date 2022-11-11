@@ -83,7 +83,7 @@ import java.util.ArrayList;
           }
       }
 
-    public static  EvalOTW(int showNum1, int showNum2)
+    public static void EvalOTW(int showNum1, int showNum2)
       {
       if(showNum1 < showNum2)
         { return 2 }
