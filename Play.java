@@ -21,13 +21,20 @@ import java.util.ArrayList;
         int p1Num = 0;
         int p2Num = 0;
         int timesRun = 0;
+        int p1Size = player1.size();
+        int p2Size = player2.size();
         int smallestHand = player1.size();
-        while(startGame < 1)
-          {
-          if(player2.size() < smallestHand)
-            smallestHand = player2.size();
           while(timesRun < smallestHand)
             {
+            System.out.println("Hello!");
+            if(p1Size < p2Size)
+              {
+              p1Size = smallestHand;
+              }
+            else
+              {
+              p2Size = smallestHand;
+              }
             p1Card = player1.remove(0);
             p2Card = player2.remove(0);
             p1Num = p1Card.getValue();
@@ -39,7 +46,7 @@ import java.util.ArrayList;
               { return ("Player 1 wins"); }
             }
 
-          }
+
         return p1Card.toString() + p2Card.toString();
         }
 
