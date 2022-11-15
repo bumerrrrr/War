@@ -1,17 +1,9 @@
-/**
- * P-1
- * Description of the project
- *
- * @author Shen Groppel
- * @version 9-1-22
- */
-
 import java.util.ArrayList;
 
  public class Play
     {
-    private ArrayList<Card> player1
-    private ArrayList<Card> player2
+    private ArrayList<Card> player1;
+    private ArrayList<Card> player2;
 
 /**
 */
@@ -21,42 +13,43 @@ import java.util.ArrayList;
          player2 = p2;
         }
 
-    public String playGame(Deck game, ArrayList<Card> player1, ArrayList<Card> player2)
+    public String playGame(ArrayList<Card> player1, ArrayList<Card> player2)
         {
         int startGame = 0;
         Card p1Card = new Card(0, " ");
         Card p2Card = new Card(0, " ");
         int p1Num = 0;
         int p2Num = 0;
+        int timesRun = 0;
+        int smallestHand = player1.size();
         while(startGame < 1)
           {
-          int smallestHand = player1.size();
           if(player2.size() < smallestHand)
             smallestHand = player2.size();
-          int timesRun = 0;
           while(timesRun < smallestHand)
             {
             p1Card = player1.remove(0);
             p2Card = player2.remove(0);
-            p1Num = p1card.getValue();
+            p1Num = p1Card.getValue();
             p2Num = p2Card.getValue();
-            timesRun = this.EvalRoundW(timesRun, p1Num, p2Num);
+            timesRun = this.EvalRoundW(timesRun, p1Num, p2Num, p1Card, p2Card);
             }
           }
+        return p1Card.toString() + p2Card.toString();
         }
 
-    public static int EvalRoundW(int timesRun, int p1Num, int p2Num)
+    public int EvalRoundW(int timesRun, int p1Num, int p2Num, Card p1Card,Card p2Card)
       {
         if(p1Num > p2Num)
           {
-          player1.add(p1card);
-          player1.add(p2card);
+          player1.add(p1Card);
+          player1.add(p2Card);
           timesRun++;
           }
-        if(p2num > p1Num)
+        if(p2Num > p1Num)
           {
-          player2.add(p1card);
-          player2.add(p1card);
+          player2.add(p1Card);
+          player2.add(p1Card);
           timesRun++;
           }
   //tie val
@@ -64,8 +57,8 @@ import java.util.ArrayList;
           {
           ArrayList<Card> overTime1 = new ArrayList<Card>();
           ArrayList<Card> overTime2 = new ArrayList<Card>();
-          overTime1.add(p1Num);
-          overTime2.add(p2Num);
+          overTime1.add(p1Card);
+          overTime2.add(p2Card);
           int x = 0;
           Card showCard1 = new Card(0, " ");
           Card showCard2 = new Card(0, " ");
@@ -75,49 +68,51 @@ import java.util.ArrayList;
           while(x < 1)
             {
             overTime1.add(player1.remove(0));
-            showCard1 = player1.remove(0));
+            showCard1 = player1.remove(0);
             showNum1 = showCard1.getValue();
             timesRun++;
             overTime2.add(player2.remove(0));
-            showCard2 = player2.remove(0));
+            showCard2 = player2.remove(0);
             showNum2 = showCard2.getValue();
             timesRun++;
             winner = this.EvalOTW(showNum1, showNum2);
             if(winner != 3)
               {
-              this.fillOTWin(winner, overTime1, overTime2)
+              this.fillOTWin(winner, overTime1, overTime2);
               x++;
               }
             }
           }
+      return timesRun;
       }
 
-    public static  EvalOTW(int showNum1, int showNum2)
+    public static int EvalOTW(int showNum1, int showNum2)
       {
       if(showNum1 < showNum2)
-        { return 2 }
+        { return 2; }
       if(showNum2 < showNum1)
-        { return 1 }
+        { return 1; }
       if(showNum1 == showNum2)
-        { return 3 }
+        { return 3; }
+      return 0;
       }
 
     public void fillOTWin(int result, ArrayList<Card> oT1, ArrayList<Card> oT2)
       {
       if(result == 1)
         {
-        for(int i = 0; i < ot1.size(); i++)
+        for(int i = 0; i < oT1.size(); i++)
           {
-          player1.add(ot1.get(i));
-          player1.add(ot2.get(i));
+          player1.add(oT1.get(i));
+          player1.add(oT2.get(i));
           }
         }
       if(result == 2)
         {
-        for(int i = 0; i < ot2.size(); i++)
+        for(int i = 0; i < oT2.size(); i++)
           {
-          player2.add(ot2.get(i));
-          player2.add(ot1.get(i));
+          player2.add(oT2.get(i));
+          player2.add(oT1.get(i));
           }
         }
       }
