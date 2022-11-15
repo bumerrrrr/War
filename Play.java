@@ -33,7 +33,12 @@ import java.util.ArrayList;
             p1Num = p1Card.getValue();
             p2Num = p2Card.getValue();
             timesRun = this.EvalRoundW(timesRun, p1Num, p2Num, p1Card, p2Card);
+            if(player1.isEmpty() == true)
+              { return ("Player 2 wins"); }
+            if(player2.isEmpty() == true)
+              { return ("Player 1 wins"); }
             }
+
           }
         return p1Card.toString() + p2Card.toString();
         }
