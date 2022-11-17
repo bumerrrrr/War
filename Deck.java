@@ -31,7 +31,7 @@ public class Deck
         }
       for (int x = 2; x <= 14; x++)
         {
-        cardDeck.add(new Card(i, tempSuit));
+        cardDeck.add(new Card(x, tempSuit));
         }
       }
     int val = 0;
