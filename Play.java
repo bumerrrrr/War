@@ -27,7 +27,7 @@ import java.util.Scanner;
         int p2Size = player2.size();
         int smallestHand = p1Size;
         String go = "";
-          while(timesRun < smallestHand)
+          while(player1.size() != 0)
             {
             System.out.println(timesRun);
             p1Size = player1.size();
