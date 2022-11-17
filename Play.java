@@ -32,7 +32,6 @@ import java.util.Scanner;
             System.out.println(timesRun);
             p1Size = player1.size();
             p2Size = player2.size();
-            System.out.println("Hello!");
             if(p1Size < p2Size)
               {
               p2Size = smallestHand;
@@ -45,7 +44,8 @@ import java.util.Scanner;
             go = keyboard.nextLine();
             if(go.equals("Y"))
             {
-            System.out.println(smallestHand);
+            System.out.println("P1" + player1.size());
+            System.out.println("P2" + player2.size());
             p1Card = player1.remove(0);
             System.out.println(p1Card.toString());
             p2Card = player2.remove(0);
@@ -68,12 +68,14 @@ import java.util.Scanner;
           {
           player1.add(p1Card);
           player1.add(p2Card);
+          System.out.println("Player1 fill");
           timesRun++;
           }
         if(p2Num > p1Num)
           {
           player2.add(p1Card);
           player2.add(p1Card);
+          System.out.println("player 2 fill");
           timesRun++;
           }
   //tie val
@@ -81,6 +83,7 @@ import java.util.Scanner;
           {
           ArrayList<Card> overTime1 = new ArrayList<Card>();
           ArrayList<Card> overTime2 = new ArrayList<Card>();
+          System.out.println("OVERTIME");
           overTime1.add(p1Card);
           overTime2.add(p2Card);
           int x = 0;
@@ -130,6 +133,7 @@ import java.util.Scanner;
           {
           player1.add(oT1.get(i));
           player1.add(oT2.get(i));
+          System.out.println("Hi");
           }
         }
       if(result == 2)
@@ -138,6 +142,7 @@ import java.util.Scanner;
           {
           player2.add(oT2.get(i));
           player2.add(oT1.get(i));
+          System.out.println("Hello");
           }
         }
       }
