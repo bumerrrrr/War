@@ -36,8 +36,8 @@ import java.util.Scanner;
               { return ("Player 2 wins"); }
             if(player2.isEmpty() == true)
               { return ("Player 1 wins"); }
-            System.out.println("P1" + player1.size());
-            System.out.println("P2" + player2.size());
+            // System.out.println("P1" + player1.size());
+            // System.out.println("P2" + player2.size());
             p1Card = player1.remove(0);
             System.out.println(p1Card.toString());
             p2Card = player2.remove(0);
@@ -50,6 +50,8 @@ import java.util.Scanner;
             // if(player2.isEmpty() == true)
             //   { return ("Player 1 wins"); }
             //}
+            System.out.println("P1" + player1.size());
+            System.out.println("P2" + player2.size());
             }
         return p1Card.toString() + p2Card.toString();
         }
@@ -74,22 +76,50 @@ import java.util.Scanner;
           ArrayList<Card> overTime1 = new ArrayList<Card>();
           ArrayList<Card> overTime2 = new ArrayList<Card>();
           System.out.println("OVERTIME");
-          overTime1.add(p1Card);
-          overTime2.add(p2Card);
+//no add card
           int x = 0;
           Card showCard1 = new Card(0, " ");
           Card showCard2 = new Card(0, " ");
           int showNum1 = 0;
           int showNum2 = 0;
           int winner = 0;
+          if(player1.isEmpty() == true || player2.isEmpty() == true)
+            {
+            System.out.println("work 1");
+            showCard1 = p1Card;
+            showCard2 = p2Card;
+            showNum1 = showCard1.getValue();
+            showNum2 = showCard2.getValue();
+            System.out.println("num 1" + showNum1);
+            System.out.println("num 2" + showNum2);
+            winner = this.evalOTW(showNum1, showNum2);
+            System.out.println("winner" + winner);
+            this.fillOtTie(winner, showCard1, showCard2);
+            System.out.println(player1.size());
+            System.out.println(player2.size());
+            System.out.println("end");
+            x = 1;
+            }
+          overTime1.add(p1Card);
+          overTime2.add(p2Card);
           while(x < 1)
             {
             if(player1.isEmpty() == true || player2.isEmpty() == true)
               {
-              this.fillOTWin(winner, overTime1, overTime2);
+              System.out.println("work");
+              showCard1 = overTime1.get(0);
+              showCard2 = overTime2.get(0);
+              showNum1 = showCard1.getValue();
+              showNum2 = showCard2.getValue();
+              System.out.println("num 1" + showNum1);
+              System.out.println("num 2" + showNum2);
+              winner = this.evalOTW(showNum1, showNum2);
+              System.out.println("winner" + winner);
+              this.fillOTWinDouble(winner, overTime1, overTime2);
               System.out.println(player1.size());
               System.out.println(player2.size());
               System.out.println("end");
+              x = 1;
               }
             else
               {
@@ -104,7 +134,7 @@ import java.util.Scanner;
               winner = this.evalOTW(showNum1, showNum2);
               if(winner != 3)
                 {
-                this.fillOTWin(winner, overTime1, overTime2);
+                this.fillOTWinDouble(winner, overTime1, overTime2);
                 x++;
                 }
               }
@@ -123,7 +153,7 @@ import java.util.Scanner;
       return 0;
       }
 
-    public void fillOTWin(int result, ArrayList<Card> oT1, ArrayList<Card> oT2)
+    public void fillOTWinDouble(int result, ArrayList<Card> oT1, ArrayList<Card> oT2)
       {
       if(result == 1)
         {
@@ -142,6 +172,28 @@ import java.util.Scanner;
           player2.add(oT1.get(i));
           System.out.println("Hello");
           }
+        }
+      if(result == 3)
+        {
+          for(int i = 0; i < oT2.size(); i++)
+            {
+            player2.add(oT2.get(i));
+            }
+          for(int i = 0; i < oT1.size(); i++)
+            {
+            player1.add(oT1.get(i));
+            }
+        System.out.println("tie");
+        }
+      }
+
+    public void fillOtTie(int result, Card showCard1, Card showCard2)
+      {
+      if(result == 3)
+        {
+          player2.add(showCard2);
+          player1.add(showCard1);
+        System.out.println("tie");
         }
       }
     }
