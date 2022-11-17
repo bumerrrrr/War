@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
  public class Play
     {
@@ -13,8 +14,9 @@ import java.util.ArrayList;
          player2 = p2;
         }
 
-    public String playGame(ArrayList<Card> player1, ArrayList<Card> player2)
+    public String playGame()
         {
+        Scanner keyboard = new Scanner(System.in);
         int startGame = 0;
         Card p1Card = new Card(0, " ");
         Card p2Card = new Card(0, " ");
@@ -23,30 +25,40 @@ import java.util.ArrayList;
         int timesRun = 0;
         int p1Size = player1.size();
         int p2Size = player2.size();
-        int smallestHand = player1.size();
+        int smallestHand = p1Size;
+        String go = "";
           while(timesRun < smallestHand)
             {
+            System.out.println(timesRun);
+            p1Size = player1.size();
+            p2Size = player2.size();
             System.out.println("Hello!");
             if(p1Size < p2Size)
               {
-              p1Size = smallestHand;
+              p2Size = smallestHand;
               }
             else
               {
-              p2Size = smallestHand;
+              p1Size = smallestHand;
               }
+            System.out.println("go again? Y/N");
+            go = keyboard.nextLine();
+            if(go.equals("Y"))
+            {
+            System.out.println(smallestHand);
             p1Card = player1.remove(0);
+            System.out.println(p1Card.toString());
             p2Card = player2.remove(0);
+            System.out.println(p2Card.toString());
             p1Num = p1Card.getValue();
             p2Num = p2Card.getValue();
-            timesRun = this.EvalRoundW(timesRun, p1Num, p2Num, p1Card, p2Card);
+            timesRun += this.EvalRoundW(timesRun, p1Num, p2Num, p1Card, p2Card);
             if(player1.isEmpty() == true)
               { return ("Player 2 wins"); }
             if(player2.isEmpty() == true)
               { return ("Player 1 wins"); }
             }
-
-
+            }
         return p1Card.toString() + p2Card.toString();
         }
 
@@ -82,11 +94,12 @@ import java.util.ArrayList;
             overTime1.add(player1.remove(0));
             showCard1 = player1.remove(0);
             showNum1 = showCard1.getValue();
-            timesRun++;
+            overTime1.add(showCard1);
             overTime2.add(player2.remove(0));
             showCard2 = player2.remove(0);
             showNum2 = showCard2.getValue();
-            timesRun++;
+            overTime2.add(showCard2);
+            timesRun += 2;
             winner = this.EvalOTW(showNum1, showNum2);
             if(winner != 3)
               {
