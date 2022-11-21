@@ -48,8 +48,9 @@ public class Deck
     }
 
   /*
-  *@param player1 and player2 is an ArrayList of Card objects
   *Deals cards to the players of the game
+  *
+  *@param player1 and player2 is an ArrayList of Card objects
   */
   public void dealCards(ArrayList<Card>player1, ArrayList<Card>player2)
     {
