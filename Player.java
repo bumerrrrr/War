@@ -1,10 +1,4 @@
-/**
- * P-1
- * Description of the project
- *
- * @author Shen Groppel
- * @version 9-1-22
- */
+
 
 import java.util.ArrayList;
 
