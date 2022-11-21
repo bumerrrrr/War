@@ -25,17 +25,25 @@ import java.util.Scanner;
         int p1Size = player1.size();
         int p2Size = player2.size();
         int smallestHand = p1Size;
+        System.out.println(player1);
+        System.out.println(player2);
         String go = "";
-          while(player1.size() != 0)
+          while(player1.size() != 0 || player2.size() != 0)
             {
             //System.out.println("go again? Y/N");
             //go = keyboard.nextLine();
             //if(go.equals("Y"))
             //{
             if(player1.isEmpty() == true)
-              { return ("Player 2 wins"); }
+              {
+              System.out.println(("Player 2 wins"));
+              return ("Player 2 wins");
+              }
             if(player2.isEmpty() == true)
-              { return ("Player 1 wins"); }
+              {
+              System.out.println(("Player 1 wins"));
+              return ("Player 1 wins");
+              }
             // System.out.println("P1" + player1.size());
             // System.out.println("P2" + player2.size());
             p1Card = player1.remove(0);
@@ -60,14 +68,14 @@ import java.util.Scanner;
       {
         if(p1Num > p2Num)
           {
-          player1.add(p1Card);
           player1.add(p2Card);
+          player1.add(p1Card);
           System.out.println("Player1 fill");
           }
         if(p2Num > p1Num)
           {
           player2.add(p1Card);
-          player2.add(p1Card);
+          player2.add(p2Card);
           System.out.println("player 2 fill");
           }
   //tie val
@@ -100,45 +108,49 @@ import java.util.Scanner;
             System.out.println("end");
             x = 1;
             }
-          overTime1.add(p1Card);
-          overTime2.add(p2Card);
-          while(x < 1)
+          else
             {
-            if(player1.isEmpty() == true || player2.isEmpty() == true)
+            overTime1.add(p1Card);
+            overTime2.add(p2Card);
+            while(x < 1)
               {
-              System.out.println("work");
-              showCard1 = overTime1.get(0);
-              showCard2 = overTime2.get(0);
-              showNum1 = showCard1.getValue();
-              showNum2 = showCard2.getValue();
-              System.out.println("num 1" + showNum1);
-              System.out.println("num 2" + showNum2);
-              winner = this.evalOTW(showNum1, showNum2);
-              System.out.println("winner" + winner);
-              this.fillOTWinDouble(winner, overTime1, overTime2);
-              System.out.println(player1.size());
-              System.out.println(player2.size());
-              System.out.println("end");
-              x = 1;
-              }
-            else
-              {
-              overTime1.add(player1.remove(0));
-              showCard1 = player1.remove(0);
-              showNum1 = showCard1.getValue();
-              overTime1.add(showCard1);
-              overTime2.add(player2.remove(0));
-              showCard2 = player2.remove(0);
-              showNum2 = showCard2.getValue();
-              overTime2.add(showCard2);
-              winner = this.evalOTW(showNum1, showNum2);
-              if(winner != 3)
+              if(player1.size() == 1 || player2.size() == 1)
                 {
+                System.out.println("work");
+                showCard1 = overTime1.get(0);
+                showCard2 = overTime2.get(0);
+                showNum1 = showCard1.getValue();
+                showNum2 = showCard2.getValue();
+                System.out.println("num 1" + showNum1);
+                System.out.println("num 2" + showNum2);
+                winner = this.evalOTW(showNum1, showNum2);
+                System.out.println("winner" + winner);
                 this.fillOTWinDouble(winner, overTime1, overTime2);
-                x++;
+                System.out.println(player1.size());
+                System.out.println(player2.size());
+                System.out.println("end");
+                x = 1;
+                }
+              else
+                {
+                System.out.println("else");
+                overTime1.add(player1.remove(0));
+                showCard1 = player1.remove(0);
+                showNum1 = showCard1.getValue();
+                overTime1.add(showCard1);
+                overTime2.add(player2.remove(0));
+                showCard2 = player2.remove(0);
+                showNum2 = showCard2.getValue();
+                overTime2.add(showCard2);
+                winner = this.evalOTW(showNum1, showNum2);
+                if(winner != 3)
+                  {
+                  this.fillOTWinDouble(winner, overTime1, overTime2);
+                  x++;
+                  }
                 }
               }
-            }
+          }
           }
       }
 
