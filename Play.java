@@ -25,9 +25,10 @@ import java.util.Scanner;
         int p1Size = player1.size();
         int p2Size = player2.size();
         int smallestHand = p1Size;
-        System.out.println(player1);
-        System.out.println(player2);
+        // System.out.println(player1);
+        // System.out.println(player2);
         String go = "";
+        int round = 0;
           while(player1.size() != 0 || player2.size() != 0)
             {
             //System.out.println("go again? Y/N");
@@ -37,12 +38,12 @@ import java.util.Scanner;
             if(player1.isEmpty() == true)
               {
               System.out.println(("Player 2 wins"));
-              return ("Player 2 wins");
+              return ("");
               }
             if(player2.isEmpty() == true)
               {
               System.out.println(("Player 1 wins"));
-              return ("Player 1 wins");
+              return ("");
               }
             // System.out.println("P1" + player1.size());
             // System.out.println("P2" + player2.size());
@@ -53,37 +54,40 @@ import java.util.Scanner;
             p1Num = p1Card.getValue();
             p2Num = p2Card.getValue();
             this.evalRoundW(p1Num, p2Num, p1Card, p2Card);
+            round++;
+            System.out.println("Round count: " + round);
             // if(player1.isEmpty() == true)
             //   { return ("Player 2 wins"); }
             // if(player2.isEmpty() == true)
             //   { return ("Player 1 wins"); }
             //}
-            System.out.println("P1" + player1.size());
-            System.out.println("P2" + player2.size());
+            System.out.println("Player 1 hand count " + player1.size());
+            System.out.println("Player 2 hand count" + player2.size());
             }
-        return p1Card.toString() + p2Card.toString();
+        return "";
         }
 
-    public void evalRoundW(int p1Num, int p2Num, Card p1Card,Card p2Card)
+    public String evalRoundW(int p1Num, int p2Num, Card p1Card,Card p2Card)
       {
         if(p1Num > p2Num)
           {
           player1.add(p2Card);
           player1.add(p1Card);
-          System.out.println("Player1 fill");
+          System.out.println("Player 1 won round");
           }
         if(p2Num > p1Num)
           {
           player2.add(p1Card);
           player2.add(p2Card);
-          System.out.println("player 2 fill");
+          System.out.println("player 2 won round");
           }
   //tie val
         if(p1Num == p2Num)
           {
           ArrayList<Card> overTime1 = new ArrayList<Card>();
           ArrayList<Card> overTime2 = new ArrayList<Card>();
-          System.out.println("OVERTIME");
+          int round = 0;
+          System.out.println("War");
 //no add card
           int x = 0;
           Card showCard1 = new Card(0, " ");
@@ -93,20 +97,17 @@ import java.util.Scanner;
           int winner = 0;
           if(player1.isEmpty() == true || player2.isEmpty() == true)
             {
-            System.out.println("work 1");
             showCard1 = p1Card;
             showCard2 = p2Card;
             showNum1 = showCard1.getValue();
             showNum2 = showCard2.getValue();
-            System.out.println("num 1" + showNum1);
-            System.out.println("num 2" + showNum2);
             winner = this.evalOTW(showNum1, showNum2);
-            System.out.println("winner" + winner);
             this.fillOtTie(winner, showCard1, showCard2);
             System.out.println(player1.size());
             System.out.println(player2.size());
-            System.out.println("end");
             x = 1;
+            round++;
+            System.out.println("Round count War: " + round);
             }
           else
             {
@@ -116,42 +117,55 @@ import java.util.Scanner;
               {
               if(player1.size() == 1 || player2.size() == 1)
                 {
-                System.out.println("work");
                 showCard1 = overTime1.get(0);
                 showCard2 = overTime2.get(0);
                 showNum1 = showCard1.getValue();
                 showNum2 = showCard2.getValue();
-                System.out.println("num 1" + showNum1);
-                System.out.println("num 2" + showNum2);
                 winner = this.evalOTW(showNum1, showNum2);
-                System.out.println("winner" + winner);
                 this.fillOTWinDouble(winner, overTime1, overTime2);
-                System.out.println(player1.size());
-                System.out.println(player2.size());
-                System.out.println("end");
                 x = 1;
+                round++;
+                System.out.println("Round count War: " + round);
+                return "";
                 }
               else
                 {
-                System.out.println("else");
-                overTime1.add(player1.remove(0));
-                showCard1 = player1.remove(0);
-                showNum1 = showCard1.getValue();
-                overTime1.add(showCard1);
-                overTime2.add(player2.remove(0));
-                showCard2 = player2.remove(0);
-                showNum2 = showCard2.getValue();
-                overTime2.add(showCard2);
-                winner = this.evalOTW(showNum1, showNum2);
-                if(winner != 3)
+                if(player1.isEmpty() == true || player2.isEmpty() == true)
                   {
-                  this.fillOTWinDouble(winner, overTime1, overTime2);
-                  x++;
+                  showCard1 = p1Card;
+                  showCard2 = p2Card;
+                  showNum1 = showCard1.getValue();
+                  showNum2 = showCard2.getValue();
+                  winner = this.evalOTW(showNum1, showNum2);
+                  this.fillOtTie(winner, showCard1, showCard2);
+                  x = 1;
+                  System.out.println("Round count War: " + round);
+                  return "";
+                }
+                else
+                  {
+                  overTime1.add(player1.remove(0));
+                  showCard1 = player1.remove(0);
+                  showNum1 = showCard1.getValue();
+                  overTime1.add(showCard1);
+                  overTime2.add(player2.remove(0));
+                  showCard2 = player2.remove(0);
+                  showNum2 = showCard2.getValue();
+                  overTime2.add(showCard2);
+                  winner = this.evalOTW(showNum1, showNum2);
+                  if(winner != 3)
+                    {
+                    this.fillOTWinDouble(winner, overTime1, overTime2);
+                    x++;
+                    round++;
+                    System.out.println("Round count War: " + round);
+                    }
                   }
                 }
               }
           }
           }
+      return "";
       }
 
     public static int evalOTW(int showNum1, int showNum2)
@@ -173,8 +187,8 @@ import java.util.Scanner;
           {
           player1.add(oT1.get(i));
           player1.add(oT2.get(i));
-          System.out.println("Hi");
           }
+        System.out.println("player 1 won War");
         }
       if(result == 2)
         {
@@ -182,8 +196,8 @@ import java.util.Scanner;
           {
           player2.add(oT2.get(i));
           player2.add(oT1.get(i));
-          System.out.println("Hello");
           }
+        System.out.println("player 2 won War");
         }
       if(result == 3)
         {
@@ -195,7 +209,6 @@ import java.util.Scanner;
             {
             player1.add(oT1.get(i));
             }
-        System.out.println("tie");
         }
       }
 
@@ -205,7 +218,6 @@ import java.util.Scanner;
         {
           player2.add(showCard2);
           player1.add(showCard1);
-        System.out.println("tie");
         }
       }
     }
