@@ -7,7 +7,9 @@ public class Deck
     {
     cardDeck = new ArrayList<Card>();
     }
-
+/**
+*Shuffles the deck and fills the deck with 52 cards with the right cards
+*/
   public void shuffleAndFill()
     {
     ArrayList<Card> player1 = new ArrayList<Card>();
@@ -45,6 +47,10 @@ public class Deck
     this.dealCards(player1, player2);
     }
 
+  /*
+  *@param player1 and player2 is an ArrayList of Card objects
+  *Deals cards to the players of the game
+  */
   public void dealCards(ArrayList<Card>player1, ArrayList<Card>player2)
     {
     for (int i = 0; i < cardDeck.size(); i++)
