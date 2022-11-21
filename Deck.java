@@ -2,7 +2,10 @@ import java.util.ArrayList;
 public class Deck
   {
   private ArrayList<Card> cardDeck;
-
+  
+  /**
+  * The constructor of the Deck object
+  */
   public Deck()
     {
     cardDeck = new ArrayList<Card>();
@@ -50,7 +53,8 @@ public class Deck
   /*
   *Deals cards to the players of the game
   *
-  *@param player1 and player2 is an ArrayList of Card objects
+  *@param player1 a ArrayList of Card objects
+  *@param player 2 an ArrayList of Card objects
   */
   public void dealCards(ArrayList<Card>player1, ArrayList<Card>player2)
     {
