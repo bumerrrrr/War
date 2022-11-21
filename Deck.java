@@ -10,6 +10,8 @@ public class Deck
 
   public void shuffleAndFill()
     {
+    ArrayList<Card> player1 = new ArrayList<Card>();
+    ArrayList<Card> player2 = new ArrayList<Card>();
     String tempSuit = "";
     for (int i = 0; i < 4; i++)
       {
@@ -35,11 +37,12 @@ public class Deck
         }
       }
     int val = 0;
-    for (int i = 0; i < 10000; i++)
+    for (int i = 0; i < 1000000; i++)
       {
       val = (int)(51 * Math.random());
       cardDeck.add(cardDeck.remove(val));
       }
+    this.dealCards(player1, player2);
     }
 
   public void dealCards(ArrayList<Card>player1, ArrayList<Card>player2)
@@ -55,5 +58,8 @@ public class Deck
         player2.add(cardDeck.get(i));
         }
       }
+
+    Play war = new Play(player1, player2);
+    war.playGame();
     }
   }
