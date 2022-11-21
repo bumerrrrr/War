@@ -13,5 +13,6 @@
     public static void main(String[] args)
         {
         Deck gameCards = new Deck();
+        gameCards.shuffleAndFill();
         }
     }
